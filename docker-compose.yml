@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0.18
+    container_name: solar-mqtt-broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  publisher:
+    build:
+      context: .
+      target: publisher
+    container_name: solar-publisher
+    depends_on:
+      - mqtt-broker
+    environment:
+      - MQTT_BROKER_URI=tcp://mqtt-broker:1883
+    stdin_open: true
+    tty: true
+
+  subscriber:
+    build:
+      context: .
+      target: subscriber
+    container_name: solar-subscriber
+    depends_on:
+      - mqtt-broker
+    environment:
+      - MQTT_BROKER_URI=tcp://mqtt-broker:1883
+    stdin_open: true
+    tty: true
