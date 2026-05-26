@@ -7,7 +7,7 @@
 namespace solar
 {
 
-    MqttRouter::MqttRouter(TelemetryListener &listener) noexcept
+    MqttRouter::MqttRouter(ITelemetryListener &listener) noexcept
         : m_listener{listener} {}
 
     void MqttRouter::message_arrived(mqtt::const_message_ptr msg)

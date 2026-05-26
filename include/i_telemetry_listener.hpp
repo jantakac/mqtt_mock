@@ -6,10 +6,10 @@
 namespace solar
 {
 
-    class TelemetryListener
+    class ITelemetryListener
     {
     public:
-        virtual ~TelemetryListener() = default;
+        virtual ~ITelemetryListener() = default;
         virtual void onTelemetryReceived(const std::string &panelId, const Telemetry &telemetry) noexcept = 0;
     };
 

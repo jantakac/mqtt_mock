@@ -1,8 +1,6 @@
-# Stage 1: Build Environment
 FROM ubuntu:24.04 AS builder
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Added libssl-dev here:
 RUN apt-get update && apt-get install -y \
     build-essential \
     gcc-14 \
@@ -24,11 +22,9 @@ RUN cmake -B build -DCMAKE_BUILD_TYPE=Release \
     && cmake --install build
 
 
-# Stage 2: Publisher Runtime Environment
 FROM ubuntu:24.04 AS publisher
 ENV DEBIAN_FRONTEND=noninteractive
 
-# libpaho-mqtt-dev transitively handles the runtime SSL dependency
 RUN apt-get update && apt-get install -y \
     libpaho-mqtt-dev \
     && rm -rf /var/lib/apt/lists/*
@@ -43,7 +39,6 @@ RUN ldconfig
 ENTRYPOINT ["/app/solar_publisher"]
 
 
-# Stage 3: Subscriber Runtime Environment
 FROM ubuntu:24.04 AS subscriber
 ENV DEBIAN_FRONTEND=noninteractive
 

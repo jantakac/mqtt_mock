@@ -4,7 +4,7 @@
 namespace solar
 {
 
-    SolarMonitorClient::SolarMonitorClient(std::string brokerUri, TelemetryListener &listener)
+    SolarMonitorClient::SolarMonitorClient(std::string brokerUri, ITelemetryListener &listener)
         : m_brokerUri{std::move(brokerUri)}, m_router{listener}, m_client{m_brokerUri, "solar_monitor_dashboard", mqtt::create_options(MQTTVERSION_5)}
     {
         m_client.set_callback(m_router);
