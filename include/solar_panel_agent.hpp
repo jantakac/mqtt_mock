@@ -11,6 +11,7 @@ namespace solar
     class SolarPanelAgent
     {
     public:
+        static constexpr std::chrono::milliseconds interval{1000};
         SolarPanelAgent(SolarPanelSimulator::Config config, std::string brokerUri);
 
         void start();

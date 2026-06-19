@@ -25,7 +25,6 @@ namespace solar
         {
             m_publisher.connect();
 
-            constexpr std::chrono::milliseconds interval{1000};
             std::mutex mtx;
 
             while (!stopToken.stop_requested())
