@@ -1,0 +1,7 @@
+{
+    "broker_uri": "tcp://mqtt-broker:1883",
+    "allowed_devices": [
+        "panel_east_01",
+        "panel_roof_02"
+    ]
+}

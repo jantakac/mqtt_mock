@@ -1,5 +1,6 @@
 #include "solar_dashboard.hpp"
 #include "solar_monitor_client.hpp"
+#include "subscriber_config.hpp"
 #include <print>
 #include <cstdlib>
 #include <tuple>
@@ -7,11 +8,14 @@
 
 int main()
 {
-    const char *envUri = std::getenv("MQTT_BROKER_URI");
-    const std::string brokerUri = envUri ? envUri : "tcp://localhost:1883";
+    // const char *envUri = std::getenv("MQTT_BROKER_URI");
+    // const std::string brokerUri = envUri ? envUri : "tcp://localhost:1883";
+
+    const auto config{solar::loadConfig("subscriber_config.json")};
 
     solar::SolarDashboard dashboard;
-    solar::SolarMonitorClient client{brokerUri, dashboard};
+
+    solar::SolarMonitorClient client{config, dashboard};
 
     try
     {

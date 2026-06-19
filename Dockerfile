@@ -51,6 +51,8 @@ WORKDIR /app
 COPY --from=builder /app/build/solar_subscriber /app/solar_subscriber
 COPY --from=builder /usr/local/lib/libpaho-mqttpp3.so* /usr/local/lib/
 
+COPY subscriber_config.json /app/subscriber_config.json
+
 RUN ldconfig
 
 ENTRYPOINT ["/app/solar_subscriber"]

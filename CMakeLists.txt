@@ -71,6 +71,7 @@ add_executable(solar_subscriber
     src/mqtt_router.cpp
     src/solar_dashboard.cpp
     src/solar_monitor_client.cpp
+    src/subscriber_config.cpp
 )
 target_link_libraries(solar_subscriber PRIVATE solar_common)
 

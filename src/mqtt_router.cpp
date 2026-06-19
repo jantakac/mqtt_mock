@@ -6,7 +6,6 @@
 
 namespace solar
 {
-
     MqttRouter::MqttRouter(ITelemetryListener &listener) noexcept
         : m_listener{listener} {}
 
